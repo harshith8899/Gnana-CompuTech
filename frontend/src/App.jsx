@@ -6,6 +6,7 @@ import Home from './pages/Home.jsx'
 import AboutUs from './pages/AboutUs.jsx'
 import CourseDetail from './pages/CourseDetail.jsx'
 import ScrollToTop from "./components/ScrollToTop";
+import Services from './pages/Services.jsx'
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/services" element={<Services />} />
         <Route path="/courses/:slug" element={<CourseDetail />} />
       </Routes>
       <Footer />
