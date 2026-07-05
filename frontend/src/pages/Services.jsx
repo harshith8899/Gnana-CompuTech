@@ -104,10 +104,7 @@ export default function Services() {
       <section className="border-b border-[#dcd2b4]/80 bg-[radial-gradient(circle_at_88%_12%,_#eadfc0_0%,_transparent_55%)] px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <div className="max-w-3xl">
-            <div className="mb-5 inline-flex items-center gap-3 rounded-full border border-[#dcd2b4] bg-white/70 px-4 py-2 font-mono text-[0.7rem] uppercase tracking-[0.2em] text-[#16705f]">
-              <span className="font-serif text-[0.95rem] italic text-[#b9832c]">Page</span>
-              SERVICES
-            </div>
+            
             <h1 className="text-4xl font-semibold leading-tight text-[#10233d] sm:text-5xl lg:text-6xl">
               Institution-ready technology services for learning organizations
             </h1>
