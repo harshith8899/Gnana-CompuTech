@@ -2,6 +2,15 @@ import { Link, useParams, Navigate } from 'react-router-dom'
 import { getCourseBySlug, getRelatedCourses } from '../data/courses.js'
 import { useEffect, useState } from 'react'
 
+// ============================================
+// 🔒 COMING SOON LOCK — TOGGLE
+// Set this to false when the course detail page is ready to launch.
+// To remove the feature completely later, delete every block
+// wrapped between "COMING SOON LOCK - START" and "- END" comments,
+// in both this file and the CSS.
+// ============================================
+const PAGE_LOCKED = true
+
 function ClockIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -111,13 +120,15 @@ function RelatedCourseCard({ course }) {
 
 export default function CourseDetail() {
   const { slug } = useParams()
-    useEffect(() => {
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: "instant",
-  });
-}, [slug]);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  }, [slug]);
+
   const course = getCourseBySlug(slug)
   const [openModule, setOpenModule] = useState(0)
   const [openFaq, setOpenFaq] = useState(0)
@@ -130,7 +141,15 @@ export default function CourseDetail() {
   const totalTopics = course.curriculum.reduce((sum, m) => sum + m.topics.length, 0)
 
   return (
-    <>
+    // ==========================================================
+    // 🔒 COMING SOON LOCK - START (wrapper)
+    // This wrapping div is only needed to host the fade overlay.
+    // If removing the feature, delete this <div className="course-detail-page">
+    // wrapper (keep the <> fragment it replaces) and the overlay block below.
+    // ==========================================================
+    <div className={`course-detail-page ${PAGE_LOCKED ? 'is-locked' : ''}`}>
+      {/* 🔒 COMING SOON LOCK - END (wrapper opening) */}
+
       {/* ---------- BREADCRUMB + HERO ---------- */}
       <section className="course-hero">
         <div className="wrap">
@@ -179,41 +198,56 @@ export default function CourseDetail() {
               </div>
             </div>
 
-            <aside className="fee-card">
-              <div className="fee-card-top">
-                <span className="fee-label">Program Fee</span>
-                <span className="fee-amount">{course.fee}</span>
-                <span className="fee-note">One-time · installments available</span>
-              </div>
-              <ul className="fee-facts">
-                <li>
-                  <span>Duration</span>
-                  <strong>{course.hours}</strong>
-                </li>
-                <li>
-                  <span>Format</span>
-                  <strong>Cohort-based</strong>
-                </li>
-                <li>
-                  <span>Next batch</span>
-                  <strong>{course.nextBatch}</strong>
-                </li>
-                <li>
-                  <span>Seats</span>
-                  <strong>{course.seats}</strong>
-                </li>
-                <li>
-                  <span>Certificate</span>
-                  <strong>On completion</strong>
-                </li>
-              </ul>
-              <Link to="/#contact" className="btn btn-amber" style={{ width: '100%', justifyContent: 'center' }}>
-                Reserve My Seat
-              </Link>
-              <a href="#" className="fee-brochure-link">
-                ↓ Download full syllabus (PDF)
-              </a>
-            </aside>
+            {/* ==========================================================
+    🔒 COMING SOON LOCK - START (fee card)
+    Wraps the fee card so it can get its own blur + badge,
+    independent of the page-wide fade below.
+========================================================== */}
+<aside className={`fee-card-wrapper ${PAGE_LOCKED ? 'is-locked' : ''}`}>
+  {PAGE_LOCKED && (
+    <div className="fee-card-badge">
+      <span>Pricing coming soon</span>
+    </div>
+  )}
+  <div className="fee-card">
+    {/* 🔒 COMING SOON LOCK - END (fee card wrapper opening) */}
+    <div className="fee-card-top">
+      <span className="fee-label">Program Fee</span>
+      <span className="fee-amount">{course.fee}</span>
+      <span className="fee-note">One-time · installments available</span>
+    </div>
+    <ul className="fee-facts">
+      <li>
+        <span>Duration</span>
+        <strong>{course.hours}</strong>
+      </li>
+      <li>
+        <span>Format</span>
+        <strong>Cohort-based</strong>
+      </li>
+      <li>
+        <span>Next batch</span>
+        <strong>{course.nextBatch}</strong>
+      </li>
+      <li>
+        <span>Seats</span>
+        <strong>{course.seats}</strong>
+      </li>
+      <li>
+        <span>Certificate</span>
+        <strong>On completion</strong>
+      </li>
+    </ul>
+    <Link to="/#contact" className="btn btn-amber" style={{ width: '100%', justifyContent: 'center' }}>
+      Reserve My Seat
+    </Link>
+    <a href="#" className="fee-brochure-link">
+      ↓ Download full syllabus (PDF)
+    </a>
+  {/* 🔒 COMING SOON LOCK - START (fee card wrapper closing) */}
+  </div>
+</aside>
+{/* 🔒 COMING SOON LOCK - END (fee card) */}
           </div>
         </div>
       </section>
@@ -366,6 +400,24 @@ export default function CourseDetail() {
           </div>
         </div>
       </section>
-    </>
+
+      {/* ==========================================================
+          🔒 COMING SOON LOCK - START (overlay)
+          The actual blur/fade + "Coming Soon" badge live here.
+          Delete this entire block to remove the effect while
+          keeping the page content intact.
+      ========================================================== */}
+      {PAGE_LOCKED && (
+        <>
+          <div className="coming-soon-fade" aria-hidden="true" />
+          <div className="coming-soon-badge-wrap" aria-hidden="true">
+            <span className="coming-soon-badge">Full syllabus coming soon</span>
+          </div>
+        </>
+      )}
+      {/* 🔒 COMING SOON LOCK - END (overlay) */}
+
+    </div>
+    // 🔒 COMING SOON LOCK - END (wrapper closing)
   )
 }

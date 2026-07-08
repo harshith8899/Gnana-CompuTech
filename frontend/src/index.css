@@ -292,6 +292,173 @@ section.alt{background:var(--paper-dim); border-top:1px solid var(--line); borde
 .course-actions .view{font-size:13.5px; font-weight:600; color:var(--ink); border-bottom:1.5px solid var(--amber); padding-bottom:2px;}
 .course-actions .brochure{font-size:12.5px; color:var(--teal); font-family:var(--mono);}
 
+/* ==========================================================
+   🔒 COMING SOON LOCK - START (CSS)
+   Delete this whole block when removing the feature.
+========================================================== */
+.course-detail-page {
+  position: relative;
+}
+
+/* The blurred/faded page content sits underneath a gradient-masked
+   blur layer. The mask is transparent for the first 20% (fully sharp)
+   and ramps to fully opaque blur by ~40%. Tweak the % stops to change
+   how much stays visible. */
+/* ==========================================================
+   🔒 COMING SOON LOCK - START (CSS)
+   Delete this whole block when removing the feature.
+========================================================== */
+.course-detail-page {
+  position: relative;
+}
+
+/* When locked, clip the page at roughly the visible (unblurred) point
+   and prevent scrolling past it. Adjust max-height to match wherever
+   your fade/blur actually starts (in px or vh, whichever suits your layout). */
+.course-detail-page.is-locked {
+  max-height: 100vh;   /* ← tweak this: how much of the page stays reachable */
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.coming-soon-fade {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 20%,
+    black 20%,
+    black 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 20%,
+    black 20%,
+    black 100%
+  );
+}
+
+.coming-soon-badge-wrap {
+  position: absolute;
+  top: 22%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 6;
+  pointer-events: none;
+}
+
+.coming-soon-badge {
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+/* 🔒 COMING SOON LOCK - END (CSS) */
+
+.coming-soon-fade {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  /* Hard cutoff: fully sharp for the first 20%, then blur kicks in
+     immediately — no gradual ramp. Move the 20% value to change
+     where the blur starts. */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 20%,
+    black 20%,
+    black 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 20%,
+    black 20%,
+    black 100%
+  );
+}
+
+.coming-soon-badge-wrap {
+  position: absolute;
+  top: 22%; /* sits just past the visible 20% mark */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 6;
+  pointer-events: none;
+}
+
+.coming-soon-badge {
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+/* 🔒 COMING SOON LOCK - END (CSS) */
+
+/* ==========================================================
+   🔒 COMING SOON LOCK - START (fee card CSS)
+   Delete this block when removing the feature.
+========================================================== */
+.fee-card-wrapper {
+  position: relative;
+}
+
+.fee-card-wrapper.is-locked .fee-card {
+  filter: blur(6px);
+  pointer-events: none;
+  user-select: none;
+}
+
+.fee-card-badge {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.fee-card-badge span {
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+/* 🔒 COMING SOON LOCK - END (fee card CSS) */
 /* ---------- SERVICES ---------- */
 .service-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
 .service-card{background:var(--card); padding:34px 30px;}
