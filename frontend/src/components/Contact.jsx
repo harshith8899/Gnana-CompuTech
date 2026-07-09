@@ -1,20 +1,48 @@
-import { useState } from 'react'
+import { useState } from "react";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { db } from "../firebase"; // Change this path if needed
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' })
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
 
   function handleChange(e) {
-    const { name, value } = e.target
-    setForm((prev) => ({ ...prev, [name]: value }))
+    const { name, value } = e.target;
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   }
 
-  function handleSubmit(e) {
-    // Remove this preventDefault (and the fetch below) if you'd rather let the
-    // form POST directly to /submit-enquiry like the original static page did.
-    e.preventDefault()
-    console.log('Enquiry submitted:', form)
-    // Example: send to your backend
-    // fetch('/submit-enquiry', { method: 'POST', body: JSON.stringify(form) })
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+      await addDoc(collection(db, "enquiries"), {
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        message: form.message,
+        status: "New",
+        createdAt: serverTimestamp(),
+      });
+
+      alert("Enquiry Submitted Successfully!");
+
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Error saving enquiry:", error);
+      alert("Something went wrong. Please try again.");
+    }
   }
 
   return (
@@ -49,20 +77,33 @@ export default function Contact() {
 
             <div className="contact-info">
               <div className="row">
-                <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                   <circle cx="12" cy="10" r="3" />
                 </svg>
                 <div>
                   <strong>Address</strong>
                   <span>
-                    #126, 2nd Floor, 9th A Cross, 3rd Main, Vigneswaranagara,
-                    Sunkadakatte, Bengaluru
+                    #126, 2nd Floor, 9th A Cross, 3rd Main,
+                    Vigneswaranagara, Sunkadakatte, Bengaluru
                   </span>
                 </div>
               </div>
+
               <div className="row">
-                <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
                 </svg>
                 <div>
@@ -72,15 +113,24 @@ export default function Contact() {
                   </span>
                 </div>
               </div>
+
               <div className="row">
-                <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
                   <path d="M4 4h16v16H4z" />
                   <path d="M22 6l-10 7L2 6" />
                 </svg>
                 <div>
                   <strong>Email</strong>
                   <span>
-                    <a href="mailto:gnanacomputech@gmail.com">gnanacomputech@gmail.com</a>
+                    <a href="mailto:gnanacomputech@gmail.com">
+                      gnanacomputech@gmail.com
+                    </a>
                   </span>
                 </div>
               </div>
@@ -89,21 +139,23 @@ export default function Contact() {
 
           <div className="contact-form">
             <div className="eyebrow">SEND AN ENQUIRY</div>
+
             <form onSubmit={handleSubmit}>
               <div className="field">
-                <label htmlFor="name">Your name</label>
+                <label htmlFor="name">Your Name</label>
                 <input
                   id="name"
                   type="text"
                   name="name"
-                  placeholder="Full name"
+                  placeholder="Full Name"
                   value={form.name}
                   onChange={handleChange}
                   required
                 />
               </div>
+
               <div className="field">
-                <label htmlFor="email">Email address</label>
+                <label htmlFor="email">Email Address</label>
                 <input
                   id="email"
                   type="email"
@@ -114,8 +166,9 @@ export default function Contact() {
                   required
                 />
               </div>
+
               <div className="field">
-                <label htmlFor="phone">Phone number</label>
+                <label htmlFor="phone">Phone Number</label>
                 <input
                   id="phone"
                   type="text"
@@ -126,28 +179,29 @@ export default function Contact() {
                   value={form.phone}
                   onChange={handleChange}
                   required
-                  title="Enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9"
                 />
               </div>
+
               <div className="field">
                 <label htmlFor="message">Message</label>
                 <textarea
                   id="message"
                   name="message"
                   rows="4"
-                  placeholder="Tell us a little about what you need"
+                  placeholder="Tell us about your requirements"
                   value={form.message}
                   onChange={handleChange}
                   required
                 ></textarea>
               </div>
+
               <button type="submit" className="btn btn-amber">
-                Send message
+                Send Message
               </button>
             </form>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
