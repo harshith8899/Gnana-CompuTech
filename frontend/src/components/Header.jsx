@@ -107,6 +107,10 @@ export default function Header() {
             </a>
           </div>
 
+          <Link to="/admin/login" className="admin-link-btn">
+            Admin Login
+          </Link>
+
           <button
             className="btn btn-primary"
             onClick={() => handleSectionNavigation("contact")}
