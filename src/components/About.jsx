@@ -31,7 +31,7 @@ export default function About() {
       <div className="wrap">
         <div className="section-head">
           <div className="eyebrow">
-            <span className="num">Ch. 01</span> ABOUT THE COMPANY
+            <span className="num"></span> ABOUT THE COMPANY
           </div>
           <h2>Knowledge is the tool. Technology is the lever.</h2>
           <p>

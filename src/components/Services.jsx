@@ -90,7 +90,7 @@ export default function Services() {
       <div className="wrap">
         <div className="section-head">
           <div className="eyebrow">
-            <span className="num">Ch. 03</span> SERVICES
+            <span className="num"></span> SERVICES
           </div>
           <h2>Built for institutions, run for students.</h2>
           <p>

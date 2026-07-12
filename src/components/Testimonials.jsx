@@ -21,7 +21,7 @@ export default function Testimonials() {
       <div className="wrap">
         <div className="section-head">
           <div className="eyebrow">
-            <span className="num">Ch. 04</span> VOICES OF TRUST
+            <span className="num"></span> VOICES OF TRUST
           </div>
           <h2>What students and partners tell us.</h2>
         </div>

@@ -51,8 +51,8 @@ export default function Header() {
           <img src={logo} alt="Gnana CompuTech Solutions logo" />
 
           <div className="brand-word">
-            Gnana CompuTech
-            <span>Solutions PVT LTD</span>
+            Gnana CompuTech 
+            <span> Solutions Pvt Ltd</span>
           </div>
         </Link>
 
@@ -110,9 +110,7 @@ export default function Header() {
             </a>
           </div>
 
-          <Link to="/admin/login" className="admin-link-btn">
-            Admin Login
-          </Link>
+          
 
           <button
             className="btn btn-primary"

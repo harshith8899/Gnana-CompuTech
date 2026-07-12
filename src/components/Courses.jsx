@@ -24,16 +24,7 @@ function CourseCard({ course }) {
     <div className="course-card">
       <div className="course-tag">{course.tag}</div>
       <h3>{course.title}</h3>
-      <div className="course-meta">
-        <span>
-          <ClockIcon />
-          {course.hours}
-        </span>
-        <span>
-          <CohortIcon />
-          Cohort-based
-        </span>
-      </div>
+      
       <p className="course-desc">{course.desc}</p>
       <div className="course-actions">
         <Link to={`/courses/${course.slug}`} className="view">
@@ -53,7 +44,7 @@ export default function Courses() {
       <div className="wrap">
         <div className="section-head">
           <div className="eyebrow">
-            <span className="num">Ch. 02</span> COURSES &amp; INTERNSHIPS
+            <span className="num"></span> COURSES &amp; INTERNSHIPS
           </div>
           <h2>Certified, project led, industry mapped.</h2>
           <p>

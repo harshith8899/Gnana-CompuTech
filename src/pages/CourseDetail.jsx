@@ -169,24 +169,20 @@ export default function CourseDetail() {
               <h1>{course.title}</h1>
               <p className="course-hero-lede">{course.summary}</p>
 
-              <div className="course-hero-meta">
-                <span>
-                  <ClockIcon />
-                  {course.hours} total
-                </span>
-                <span>
-                  <LevelIcon />
-                  {course.level}
-                </span>
-                <span>
-                  <ModeIcon />
-                  {course.mode}
-                </span>
-                <span>
-                  <CalendarIcon />
-                  Next batch {course.nextBatch}
-                </span>
-              </div>
+               <div className="course-hero-meta">
+                 <span>
+                   <LevelIcon />
+                   {course.level}
+                 </span>
+                 <span>
+                   <ModeIcon />
+                   {course.mode}
+                 </span>
+                 <span>
+                   <CalendarIcon />
+                   Next batch {course.nextBatch}
+                 </span>
+               </div>
 
               <div className="hero-ctas">
                 <Link to="/#contact" className="btn btn-primary">

@@ -603,7 +603,7 @@ section.alt{background:var(--paper-dim); border-top:1px solid var(--line); borde
   gap: 1.5rem;
 }
 .testimonial-cards{background:var(--card); padding:8px;}
-.testimonial-card{padding:28px 30px; border-bottom:1px solid var(--line-soft);}
+.testimonial-card{padding:28px 30px; border-bottom:0px solid var(--line-soft);}
 .testimonial-card:last-child{border-bottom:none;}
 .quote-mark{font-family:var(--serif); font-size:34px; color:var(--amber); line-height:0.5; display:block; margin-bottom:10px;}
 .testimonial-text{font-size:15px; color:var(--ink); font-style:italic; margin-bottom:12px; max-width:60ch;}

@@ -55,7 +55,7 @@ export default function Contact() {
       <div className="wrap">
         <div className="section-head">
           <div className="eyebrow">
-            <span className="num">Ch. 05</span> GET IN TOUCH
+            <span className="num"></span> GET IN TOUCH
           </div>
           <h2>Tell us what you're building.</h2>
           <p>
