@@ -21,7 +21,7 @@ export default function App() {
   useEffect(() => {
     
     // Set page title
-    document.title = "Gnana CompuTech";
+    document.title = "Gnana CompuTech Solutions";
 
     // Set favicon
     let favicon = document.querySelector("link[rel='icon']");
