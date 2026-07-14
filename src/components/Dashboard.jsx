@@ -52,7 +52,11 @@ export default function AdminDashboard() {
       },
       (err) => {
         console.error("Failed to load enquiries:", err);
-        setError("Couldn't load enquiries. Check your connection and try again.");
+        if (err.code === "permission-denied") {
+          setError("You don't have permission to view this. Please sign in as an admin.");
+        } else {
+          setError("Couldn't load enquiries. Check your connection and try again.");
+        }
         setLoading(false);
       }
     );
@@ -119,8 +123,8 @@ export default function AdminDashboard() {
     <div className="min-h-screen bg-gray-50 pb-10">
       {/* Header */}
       <div className="sticky top-0 z-10 bg-white border-b border-gray-200 px-4 py-4 sm:px-6">
-        <h1 className="text-xl font-semibold text-gray-900">Enquiries</h1>
-        <p className="text-sm text-gray-500 mt-0.5">
+        <h1 className="text-2xl font-semibold text-gray-900 text-center">Enquiries</h1>
+        <p className="text-sm text-gray-500 mt-0.5 text-center">
           {counts.All} total · {counts.New} new
         </p>
 

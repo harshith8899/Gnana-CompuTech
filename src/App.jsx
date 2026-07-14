@@ -12,6 +12,7 @@ import Services from "./pages/Services.jsx";
 import CourseDetail from "./pages/CourseDetail.jsx";
 import AdminLogin from "./components/AdminLogin.jsx";
 import AdminDashboard from "./components/Dashboard.jsx";
+import AdminGuard from "./utils/Adminguard.jsx";
 
 import logo from "./assets/logo.png";
 
@@ -93,7 +94,14 @@ export default function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/courses/:slug" element={<CourseDetail />} />
         <Route path="/admin" element={<AdminLogin />} />
-        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route
+          path="/admin/dashboard"
+          element={
+            <AdminGuard>
+              <AdminDashboard />
+            </AdminGuard>
+          }
+        />
         <Route path="*" element={<Home />} />
       </Routes>
 

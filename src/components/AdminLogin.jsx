@@ -118,7 +118,7 @@ export default function AdminLogin() {
 
           <div className="brand-word">
             Gnana CompuTech
-            <span>EDUCATION TECHNOLOGY SOLUTIONS</span>
+            <span>Solutions Pvt Ltd</span>
           </div>
         </div>
 
